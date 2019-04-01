@@ -3,7 +3,7 @@
 # CarND-Path-Planning-Project
 Self-Driving Car Engineer ND Program
 
-## Overview
+## 1. Overview
 In this project the goal is to safely navigate around a virtual highway with other traffic that is driving +-10 MPH of the 50 MPH speed limit. Provided the car's localization and sensor fusion data, there is also a sparse map list of waypoints around the highway. The car should try to go as close as possible to the 50 MPH speed limit, which means passing slower traffic when possible, note that other cars will try to change lanes too. The car should avoid hitting other cars at all cost as well as driving inside of the marked road lanes at all times, unless going from one lane to another. The car should be able to make one complete loop around the 6946m highway. Since the car is trying to go 50 MPH, it should take a little over 5 minutes to complete 1 loop. Also the car should not experience total acceleration over 10 m/s^2 and jerk that is greater than 10 m/s^3.
 
 <p align="center">
@@ -13,14 +13,14 @@ In this project the goal is to safely navigate around a virtual highway with oth
 
 The motion planner is responsible to decide whether the car should stay or change lane, and generate the map's coordinates (path) and speed that the car should operate. Our self-driving car achieves those goals by implementing a Finite State Machine (FSM) with 5 states, and minimizing the cost functions. The final path is generated using the spline math tool.
 
-### Finite State Machine
+## 2. Finite State Machine
 ![alt text][image2]
 
 * If the PLCL or PLCR are selected, the car prepares to change lane. The preparation checks if the car speed and the buffer space are safe to change lance. If there is enough buffer space to change lane, the FSM will transition to LCL/LCR states. The FSM returns to state KL as soon the lane change is over.
 
 
 
-### Cost Function
+### 2.1 Cost Function
 
 The cost function evaluates the cost for the FSM to change state. It evaluates different metrics trying to identify the next optimal state. Below, the metrics and how they are evaluated  are presented in detail:
 
@@ -30,17 +30,17 @@ The cost function evaluates the cost for the FSM to change state. It evaluates d
 * Target Cost: The target cost evaluates the speed comparison between the ego car and the vehicle in front.
 * Collision Cost: It strongly penalizes the states which the risk of collision.
 
-### Acceleration and Jerk control 
+### 2.2 Acceleration and Jerk control 
 The requirements of this project state that the acceleration and jerk should not
 exceed 10 m/s² and 50m/s³, respectively. In order to meet this requirement, the
 car acceleration is increased or decreased by steps of 0.224 m/s².
 
-### Path Generation with Spline
+### 2.3 Path Generation with Spline
 ![alt text][image3]
 
 Spline is a piecewise "polynomial" parametric curve. They are popular for their simplicity of use and accuracy. The spline helps to define a smooth path for the car.
 
-## Dependency
+## 3. Dependency
 
 This project requires the following packages to work:
 * cmake >= 3.5
@@ -62,7 +62,7 @@ This project requires the following packages to work:
     git checkout e94b6e1
     ```
 
-### Compiling and Running
+## 4. Compiling and Running
 
 The main program can be built and run by doing the following from the project top directory.
 
