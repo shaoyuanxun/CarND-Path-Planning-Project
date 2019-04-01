@@ -9,18 +9,19 @@ In this project the goal is to safely navigate around a virtual highway with oth
 <p align="center">
 <img src="./video/path_planning.gif"]>
 </p>
-## Motion Planning
+
+## 2. Motion Planning
 
 The motion planner is responsible to decide whether the car should stay or change lane, and generate the map's coordinates (path) and speed that the car should operate. Our self-driving car achieves those goals by implementing a Finite State Machine (FSM) with 5 states, and minimizing the cost functions. The final path is generated using the spline math tool.
 
-## 2. Finite State Machine
+### 2.1 Finite State Machine
 ![alt text][image2]
 
 * If the PLCL or PLCR are selected, the car prepares to change lane. The preparation checks if the car speed and the buffer space are safe to change lance. If there is enough buffer space to change lane, the FSM will transition to LCL/LCR states. The FSM returns to state KL as soon the lane change is over.
 
 
 
-### 2.1 Cost Function
+### 2.2 Cost Function
 
 The cost function evaluates the cost for the FSM to change state. It evaluates different metrics trying to identify the next optimal state. Below, the metrics and how they are evaluated  are presented in detail:
 
@@ -30,12 +31,12 @@ The cost function evaluates the cost for the FSM to change state. It evaluates d
 * Target Cost: The target cost evaluates the speed comparison between the ego car and the vehicle in front.
 * Collision Cost: It strongly penalizes the states which the risk of collision.
 
-### 2.2 Acceleration and Jerk control 
+### 2.3 Acceleration and Jerk control 
 The requirements of this project state that the acceleration and jerk should not
 exceed 10 m/s² and 50m/s³, respectively. In order to meet this requirement, the
 car acceleration is increased or decreased by steps of 0.224 m/s².
 
-### 2.3 Path Generation with Spline
+### 2.4 Path Generation with Spline
 ![alt text][image3]
 
 Spline is a piecewise "polynomial" parametric curve. They are popular for their simplicity of use and accuracy. The spline helps to define a smooth path for the car.
